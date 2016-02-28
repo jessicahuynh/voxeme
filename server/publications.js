@@ -1,0 +1,1 @@
+Meteor.publish("theVoxemes", function(){return Voxemes.find()});

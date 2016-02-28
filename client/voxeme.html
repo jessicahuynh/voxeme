@@ -1,0 +1,24 @@
+<template name="welcome">
+	<div class="row">
+		<div class="three columns">
+			<h1>Object</h1>
+			<div class="objectListContainer">
+				<ul>
+					{{#each objectListData}}
+						{{> objectListing}}
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+		<div class="three columns">
+			testing
+		</div>
+		<div class="six columns">
+			test
+		</div>
+	</div>
+</template>
+
+<template name="objectListing">
+	<li>{{Voxeme.Lex.Pred}}</li>
+</template>
