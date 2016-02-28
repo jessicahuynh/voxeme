@@ -1,9 +1,8 @@
 <template name="browser">
 	<div class="row">
 		<div class="two columns">
-			<h1>Object</h1>
 			<div class="objectListContainer">
-				<ul>
+				<ul class="objList">
 					{{#each objectListData}}
 						{{> objectListing}}
 					{{/each}}
@@ -11,14 +10,18 @@
 			</div>
 		</div>
 		<div class="four columns">
-			<div class="u-max-full-width xml">
-				{{#with vox}}
-					{{> objectXML}}
-				{{/with}}
+			<pre class="xml">{{#with vox}}{{> objectXML}}{{/with}}</pre>
+			
+			<div class="events">
+				{{#each events}}
+					{{> eventButton}}
+				{{/each}}
 			</div>
 		</div>
 		<div class="six columns">
-			test
+			<div class="unity">
+				{{test}}
+			</div>
 		</div>
 	</div>
 </template>
@@ -27,6 +30,8 @@
 	<li><a class="voxemeSelect">{{Voxeme.Lex.Pred}}</a></li>
 </template>
 
-<template name="objectXML">
-	{{xml}}
+<template name="objectXML">{{xml}}</template>
+
+<template name="eventButton">
+	<button class="eButton">{{event}}</button>
 </template>
