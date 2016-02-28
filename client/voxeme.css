@@ -1,4 +1,11 @@
 /* CSS declarations go here */
 .container {
-    max-width:1080px;
+    max-width:1200px;
+}
+
+.xml {
+	overflow-x:hidden;
+	overflow-y:scroll;
+	width:100%;
+	font-family:monospace;
 }

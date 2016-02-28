@@ -1,9 +1,20 @@
 if (Meteor.isClient) {
+	Session.setDefault("vox","Select an object!");
 
-	Template.welcome.helpers({
+	Template.browser.helpers({
 		objectListData: function() {
-			console.log(Voxemes.find().fetch());
 			return Voxemes.find();
+		},
+		vox: function() {
+			return Session.get("vox");
+		}
+	});
+	
+	Template.browser.events({
+		'click .voxemeSelect':function (event) {
+			event.preventDefault();
+			var voxName = this.Voxeme.Lex.Pred;
+			Session.set("vox",VoxML.findOne({'voxeme':voxName}));
 		}
 	});
 	

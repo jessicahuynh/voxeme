@@ -4,4 +4,10 @@ Meteor.startup(function() {
 			Voxemes.insert(vox);
 		});
 	}
+	
+	if (VoxML.find().count() == 0) {
+		voxxml.forEach(function(vox) {
+			VoxML.insert(vox);
+		});
+	}
 });

@@ -1,6 +1,6 @@
-<template name="welcome">
+<template name="browser">
 	<div class="row">
-		<div class="three columns">
+		<div class="two columns">
 			<h1>Object</h1>
 			<div class="objectListContainer">
 				<ul>
@@ -10,8 +10,12 @@
 				</ul>
 			</div>
 		</div>
-		<div class="three columns">
-			testing
+		<div class="four columns">
+			<div class="u-max-full-width xml">
+				{{#with vox}}
+					{{> objectXML}}
+				{{/with}}
+			</div>
 		</div>
 		<div class="six columns">
 			test
@@ -20,5 +24,9 @@
 </template>
 
 <template name="objectListing">
-	<li>{{Voxeme.Lex.Pred}}</li>
+	<li><a class="voxemeSelect">{{Voxeme.Lex.Pred}}</a></li>
+</template>
+
+<template name="objectXML">
+	{{xml}}
 </template>
