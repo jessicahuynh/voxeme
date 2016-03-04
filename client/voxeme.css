@@ -52,11 +52,11 @@ button:hover, button:active, .selectedObj {
 }
 
 .xml {
-	overflow:scroll;
+	overflow-y:scroll;
+	overflow-x:hidden;
 	min-height:1em;
 	margin:0;
 	padding:.25em;
-	font-size:85%;
 	background:#f1f1f1;
 	display:block;
 }

@@ -11,7 +11,11 @@
 			</div>
 		</div>
 		<div class="four columns">
-			<pre class="xml">{{#with vox}}{{> objectXML}}{{/with}}</pre>
+			<div class="xml">
+				{{#with obj}}
+					{{> objectXML}}
+				{{/with}}
+			</div>
 			
 			<div class="events">
 				<label for="eventSelect">Events</label>
@@ -34,7 +38,94 @@
 	<option class="voxemeSelect" value="{{Voxeme.Lex.Pred}}">{{Voxeme.Lex.Pred}}</option>
 </template>
 
-<template name="objectXML">{{xml}}</template>
+<template name="objectXML">
+	<h4>{{pred}}</h4>
+	<ul>
+		<li>Lex
+			<ul>
+				<li>Pred: <a href="#">{{pred}}</a></li>
+				<li>Type: <a href="#">{{type}}</a></li>
+			</ul>
+		</li>
+		<li>Type
+			<ul>
+				<li>Head: <a href="#">{{head}}</a></li>
+				<li>Components:
+					{{#if components_null}}
+						None
+					{{else}}
+						<ul>
+						{{#each components}}
+							<li><a href="#">{{value_item}}</a></li>
+						{{/each}}
+						</ul>
+					{{/if}}
+				</li>
+				<li>Concavity: <a href="#">{{concavity}}</a></li>
+				<li>RotatSym: {{#if rotatsym_null}}None{{else}}<a href='#'>{{rotatsym}}</a>{{/if}}</li>
+				<li>ReflSym: {{#if reflsym_null}}
+					None
+					{{else}}
+						<a href='#'>{{axis_first}}</a>
+						{{#each reflsym}}
+							, <a href='#'>{{this}}</a>
+						{{/each}}
+					{{/if}}</li>
+			</ul>
+		</li>
+		<li>Habitat
+			<ul>
+				<li>Intrinsic:
+					{{#if intrinsic_null}}
+						None
+					{{else}}
+						<ul>
+						{{#each intrinsic}}
+							<li>Intr: 
+								<ul>
+									<li>Name: <a href="#">{{name_item}}</a></li>
+									<li>Value: <a href="#">{{value_item}}</a></li>
+								</ul>
+							</li>
+						{{/each}}
+						</ul>
+					{{/if}}
+				</li>
+				<li>Extrinsic: {{#if extrinsic_null}}
+						None
+					{{else}}
+						<ul>
+						{{#each extrinsic}}
+							<li>Intr: 
+								<ul>
+									<li>Name: <a href="#">{{name_item}}</a></li>
+									<li>Value: <a href="#">{{value_item}}</a></li>
+								</ul>
+							</li>
+						{{/each}}
+						</ul>
+					{{/if}}</li>
+			</ul>
+		</li>
+		<li>Afford_Str: 
+			{{#if affordances_null}}
+				None
+			{{else}}
+				<ul>
+				{{#each affordances}}
+					<li><a href="#">{{formula_item}}</a></li>
+				{{/each}}
+				</ul>
+			{{/if}}</li>
+		<li>Embodiment
+			<ul>
+				<li><a href="#">{{scale}}</a></li>
+				<li><a href="#">{{movable}}</a></li>
+			</ul>
+		</li>
+	</ul>
+</template>
+
 
 <template name="eventButton">
 	<option class="eButton" value="{{event}}">{{event}}</option>
