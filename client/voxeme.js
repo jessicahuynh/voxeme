@@ -58,13 +58,16 @@ if (Meteor.isClient) {
 		rotatsym_null: function() {
 			return (this.Voxeme.Type.RotatSym == null);
 		},
+		rotatsym_first: function() {
+			return (this.Voxeme.Type.RotatSym.split(',')[0]);
+		},
 		rotatsym: function() {
-			return this.Voxeme.Type.RotatSym;
+			return (this.Voxeme.Type.RotatSym.split(',').slice(1));
 		},
 		reflsym_null: function() {
 			return (this.Voxeme.Type.ReflSym == null);
 		},
-		axis_first: function() {
+		reflsym_first: function() {
 			return (this.Voxeme.Type.ReflSym.split(',')[0]);
 		},
 		reflsym: function() {
@@ -121,7 +124,14 @@ if (Meteor.isClient) {
 		$('.xml').height(rwindow.innerHeight()*.7);
 		
 		$('.events').height(rwindow.innerHeight()*.3);
+		
+		
+		$(".expand").each(function() {
+    		var link = $(this);
+    		link.html('+ '+link.html());
+		});
 	});
+	
 	
 	Template.browser.onCreated(function() {
 		$(window).resize(function() {

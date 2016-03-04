@@ -61,6 +61,29 @@ button:hover, button:active, .selectedObj {
 	display:block;
 }
 
+#prettyPrintList, #prettyPrintList li ul, #prettyPrintList li ul il ul {
+	list-style-type: none;
+	margin-top:0;
+	margin-bottom:.5em;
+}
+
+#prettyPrintList li, #prettyPrintList li ul li {
+	margin:0;
+}
+
+#prettyPrintList a {
+	padding:.25em 0;
+}
+
+#prettyPrintList a.expand {
+	display:block;
+}
+
+#prettyPrintList a.expand:hover {
+	background-color:#003e8c;
+	color:#f1f1f1;
+}
+
 .events {
 	display:block;
 	padding: 1em 0;

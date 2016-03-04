@@ -40,84 +40,92 @@
 
 <template name="objectXML">
 	<h4>{{pred}}</h4>
-	<ul>
-		<li>Lex
+	<ul id="prettyPrintList">
+		<li><a class="expand">Lex</a>
 			<ul>
 				<li>Pred: <a href="#">{{pred}}</a></li>
 				<li>Type: <a href="#">{{type}}</a></li>
 			</ul>
 		</li>
-		<li>Type
+		<li><a class="expand">Type</a>
 			<ul>
 				<li>Head: <a href="#">{{head}}</a></li>
-				<li>Components:
+				<li><a class="expand">Components</a>
+					<ul>
 					{{#if components_null}}
-						None
+						<li>None</li>
 					{{else}}
-						<ul>
 						{{#each components}}
 							<li><a href="#">{{value_item}}</a></li>
 						{{/each}}
-						</ul>
 					{{/if}}
+					</ul>
 				</li>
 				<li>Concavity: <a href="#">{{concavity}}</a></li>
-				<li>RotatSym: {{#if rotatsym_null}}None{{else}}<a href='#'>{{rotatsym}}</a>{{/if}}</li>
+				<li>RotatSym: {{#if rotatsym_null}}
+					None
+					{{else}}
+						<a href='#'>{{rotatsym_first}}</a>
+						{{#each rotatsym}}
+							, <a href="#">{{this}}</a>
+						{{/each}}
+					{{/if}}</li>
 				<li>ReflSym: {{#if reflsym_null}}
 					None
 					{{else}}
-						<a href='#'>{{axis_first}}</a>
+						<a href='#'>{{reflsym_first}}</a>
 						{{#each reflsym}}
 							, <a href='#'>{{this}}</a>
 						{{/each}}
 					{{/if}}</li>
 			</ul>
 		</li>
-		<li>Habitat
+		<li><a class="expand">Habitat</a>
 			<ul>
-				<li>Intrinsic:
+				<li><a class="expand">Intrinsic</a>
+					<ul>
 					{{#if intrinsic_null}}
-						None
+						<li>None</li>
 					{{else}}
-						<ul>
-						{{#each intrinsic}}
-							<li>Intr: 
-								<ul>
-									<li>Name: <a href="#">{{name_item}}</a></li>
-									<li>Value: <a href="#">{{value_item}}</a></li>
-								</ul>
-							</li>
-						{{/each}}
-						</ul>
+					{{#each intrinsic}}
+						<li><a class="expand">Intr</a>
+							<ul>
+								<li>Name: <a href="#">{{name_item}}</a></li>
+								<li>Value: <a href="#">{{value_item}}</a></li>
+							</ul>
+						</li>
+					{{/each}}
 					{{/if}}
+					</ul>
 				</li>
-				<li>Extrinsic: {{#if extrinsic_null}}
-						None
+				<li><a class="expand">Extrinsic</a>
+					<ul>
+					{{#if extrinsic_null}}
+							<li>None</li>
 					{{else}}
-						<ul>
-						{{#each extrinsic}}
-							<li>Intr: 
-								<ul>
-									<li>Name: <a href="#">{{name_item}}</a></li>
-									<li>Value: <a href="#">{{value_item}}</a></li>
-								</ul>
-							</li>
-						{{/each}}
-						</ul>
-					{{/if}}</li>
+					{{#each extrinsic}}
+						<li><a class="expand">Extr</a>
+							<ul>
+								<li>Name: <a href="#">{{name_item}}</a></li>
+								<li>Value: <a href="#">{{value_item}}</a></li>
+							</ul>
+						</li>
+					{{/each}}
+					{{/if}}
+					</ul>
+				</li>
 			</ul>
 		</li>
-		<li>Afford_Str: 
+		<li><a class="expand">Afford_Str</a>
+			<ul>
 			{{#if affordances_null}}
-				None
+				<li>None</li>
 			{{else}}
-				<ul>
 				{{#each affordances}}
 					<li><a href="#">{{formula_item}}</a></li>
 				{{/each}}
-				</ul>
-			{{/if}}</li>
-		<li>Embodiment
+			{{/if}}</ul></li>
+		<li><a class="expand">Embodiment</a>
 			<ul>
 				<li><a href="#">{{scale}}</a></li>
 				<li><a href="#">{{movable}}</a></li>
