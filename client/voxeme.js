@@ -119,7 +119,7 @@ if (Meteor.isClient) {
 		'click .expand':function(event) {
 			event.preventDefault();
 			
-			$(event.currentTarget).next('.hidden').slideToggle(600);
+			$(event.currentTarget).next('.hidden').slideToggle(400);
 		}
 	});
 	
