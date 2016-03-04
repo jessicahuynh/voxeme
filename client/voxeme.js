@@ -115,6 +115,11 @@ if (Meteor.isClient) {
 		'click .eButton':function(event) {
 			event.preventDefault();
 			Session.set("event",this);
+		},
+		'click .expand':function(event) {
+			event.preventDefault();
+			
+			$(event.currentTarget).next('.hidden').slideToggle(600);
 		}
 	});
 	
@@ -130,6 +135,8 @@ if (Meteor.isClient) {
     		var link = $(this);
     		link.html('+ '+link.html());
 		});
+		
+		$(".hidden").hide();
 	});
 	
 	

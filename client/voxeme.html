@@ -42,16 +42,16 @@
 	<h4>{{pred}}</h4>
 	<ul id="prettyPrintList">
 		<li><a class="expand">Lex</a>
-			<ul>
+			<ul class="hidden">
 				<li>Pred: <a href="#">{{pred}}</a></li>
 				<li>Type: <a href="#">{{type}}</a></li>
 			</ul>
 		</li>
 		<li><a class="expand">Type</a>
-			<ul>
+			<ul class="hidden">
 				<li>Head: <a href="#">{{head}}</a></li>
 				<li><a class="expand">Components</a>
-					<ul>
+					<ul class="hidden">
 					{{#if components_null}}
 						<li>None</li>
 					{{else}}
@@ -81,9 +81,9 @@
 			</ul>
 		</li>
 		<li><a class="expand">Habitat</a>
-			<ul>
+			<ul class="hidden">
 				<li><a class="expand">Intrinsic</a>
-					<ul>
+					<ul class="hidden">
 					{{#if intrinsic_null}}
 						<li>None</li>
 					{{else}}
@@ -99,7 +99,7 @@
 					</ul>
 				</li>
 				<li><a class="expand">Extrinsic</a>
-					<ul>
+					<ul class="hidden">
 					{{#if extrinsic_null}}
 							<li>None</li>
 					{{else}}
@@ -117,7 +117,7 @@
 			</ul>
 		</li>
 		<li><a class="expand">Afford_Str</a>
-			<ul>
+			<ul class="hidden">
 			{{#if affordances_null}}
 				<li>None</li>
 			{{else}}
@@ -126,7 +126,7 @@
 				{{/each}}
 			{{/if}}</ul></li>
 		<li><a class="expand">Embodiment</a>
-			<ul>
+			<ul class="hidden">
 				<li><a href="#">{{scale}}</a></li>
 				<li><a href="#">{{movable}}</a></li>
 			</ul>
