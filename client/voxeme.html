@@ -2,20 +2,24 @@
 	<div class="row">
 		<div class="two columns">
 			<div class="objectListContainer">
-				<ul class="objList">
+				<label for="objectSelect">Objects</label>
+				<select class="u-full-width" id="objectSelect">
 					{{#each objectListData}}
 						{{> objectListing}}
 					{{/each}}
-				</ul>
+				</select>
 			</div>
 		</div>
 		<div class="four columns">
 			<pre class="xml">{{#with vox}}{{> objectXML}}{{/with}}</pre>
 			
 			<div class="events">
-				{{#each events}}
-					{{> eventButton}}
-				{{/each}}
+				<label for="eventSelect">Events</label>
+				<select class="u-full-width" id="eventSelect">
+					{{#each events}}
+						{{> eventButton}}
+					{{/each}}
+				</select>
 			</div>
 		</div>
 		<div class="six columns">
@@ -27,11 +31,11 @@
 </template>
 
 <template name="objectListing">
-	<li><a class="voxemeSelect">{{Voxeme.Lex.Pred}}</a></li>
+	<option class="voxemeSelect" value="{{Voxeme.Lex.Pred}}">{{Voxeme.Lex.Pred}}</option>
 </template>
 
 <template name="objectXML">{{xml}}</template>
 
 <template name="eventButton">
-	<button class="eButton">{{event}}</button>
+	<option class="eButton" value="{{event}}">{{event}}</option>
 </template>

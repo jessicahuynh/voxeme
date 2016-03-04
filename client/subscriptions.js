@@ -1,3 +1,1 @@
-Meteor.subscribe("theVoxemes");
-Meteor.subscribe("theVoxML");
-Meteor.subscribe("theEvents");
+Meteor.subscribe("theVoxemes");Meteor.subscribe("theEvents");

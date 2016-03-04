@@ -51,20 +51,6 @@ button:hover, button:active, .selectedObj {
 	overflow-y:scroll;
 }
 
-.objList li {
-	margin:.25em;
-}
-
-.objList li a {
-	display:block;
-	padding:.25em .5em 0 .5em;
-}
-
-.objList li a:hover, .objList li a:active {
-	background-color:#003e8c;
-	color:#fff;
-}
-
 .xml {
 	overflow:scroll;
 	min-height:1em;
@@ -77,8 +63,7 @@ button:hover, button:active, .selectedObj {
 
 .events {
 	display:block;
-	overflow-y:scroll;
-	text-align:center;
+	padding: 1em 0;
 }
 
 .events button {
