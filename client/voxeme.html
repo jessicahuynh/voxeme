@@ -55,29 +55,13 @@
 					{{#if components_null}}
 						<li>None</li>
 					{{else}}
-						{{#each components}}
-							<li><a href="#">{{value_item}}</a></li>
-						{{/each}}
+						{{> listItems list=this.Voxeme.Type.Components.Component}}
 					{{/if}}
 					</ul>
 				</li>
 				<li>Concavity: <a href="#">{{concavity}}</a></li>
-				<li>RotatSym: {{#if rotatsym_null}}
-					None
-					{{else}}
-						<a href='#'>{{rotatsym_first}}</a>
-						{{#each rotatsym}}
-							, <a href="#">{{this}}</a>
-						{{/each}}
-					{{/if}}</li>
-				<li>ReflSym: {{#if reflsym_null}}
-					None
-					{{else}}
-						<a href='#'>{{reflsym_first}}</a>
-						{{#each reflsym}}
-							, <a href='#'>{{this}}</a>
-						{{/each}}
-					{{/if}}</li>
+				<li>RotatSym: {{> commaSeparated list=this.Voxeme.Type.RotatSym}}</li>
+				<li>ReflSym: {{> commaSeparated list=this.Voxeme.Type.ReflSym}}</li>
 			</ul>
 		</li>
 		<li><a class="expand">Habitat</a>
@@ -87,14 +71,7 @@
 					{{#if intrinsic_null}}
 						<li>None</li>
 					{{else}}
-					{{#each intrinsic}}
-						<li><a class="expand">Intr</a>
-							<ul class="hidden">
-								<li>Name: <a href="#">{{name_item}}</a></li>
-								<li>Value: <a href="#">{{value_item}}</a></li>
-							</ul>
-						</li>
-					{{/each}}
+						{{> trinsic list=this.Voxeme.Habitat.Intrinsic.Intr tr='Intr'}}
 					{{/if}}
 					</ul>
 				</li>
@@ -103,14 +80,7 @@
 					{{#if extrinsic_null}}
 							<li>None</li>
 					{{else}}
-					{{#each extrinsic}}
-						<li><a class="expand">Extr</a>
-							<ul class="hidden">
-								<li>Name: <a href="#">{{name_item}}</a></li>
-								<li>Value: <a href="#">{{value_item}}</a></li>
-							</ul>
-						</li>
-					{{/each}}
+						{{> trinsic list=this.Voxeme.Habitat.Extrinsic.Extr tr='Extr'}}
 					{{/if}}
 					</ul>
 				</li>
@@ -118,13 +88,17 @@
 		</li>
 		<li><a class="expand">Afford_Str</a>
 			<ul class="hidden">
-			{{#if affordances_null}}
-				<li>None</li>
-			{{else}}
-				{{#each affordances}}
-					<li><a href="#">{{formula_item}}</a></li>
-				{{/each}}
-			{{/if}}</ul></li>
+				<li><a class="expand">Affordances</a>
+					<ul class="hidden">
+						{{#if affordances_null}}
+							<li>None</li>
+						{{else}}
+							{{> listItems list=this.Voxeme.Afford_Str.Affordances.Affordance}}
+						{{/if}}
+					</ul>
+				</li>
+			</ul>
+		</li>
 		<li><a class="expand">Embodiment</a>
 			<ul class="hidden">
 				<li><a href="#">{{scale}}</a></li>
@@ -137,4 +111,34 @@
 
 <template name="eventButton">
 	<option class="eButton" value="{{event}}">{{event}}</option>
+</template>
+
+<template name="listItems">
+	{{#each list}}
+		<li><a href="#">{{item}}</a></li>
+	{{/each}}
+</template>
+
+<template name="trinsic">
+	{{#each list}}
+		<li><a class="expand">{{../tr}}</a>
+			<ul class="hidden">
+				<li>Name: <a href="#">{{@Name}}</a></li>
+				<li>Value: <a href="#">{{@Value}}</a></li>
+			</ul>
+		</li>
+	{{/each}}
+</template>
+
+<template name="commaSeparated">
+	{{#with splitList}}
+		{{#if lenZero}}
+			None
+		{{else}}
+			{{#each comma}}
+				<a href="#">{{this}}</a>,
+			{{/each}}
+			<a href='#'>{{last}}</a>
+		{{/if}}
+	{{/with}}
 </template>

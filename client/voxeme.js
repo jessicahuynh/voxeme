@@ -19,24 +19,6 @@ if (Meteor.isClient) {
 	});
 	
 	Template.objectXML.helpers({
-		this: function() {
-			return this;
-		},
-		name_item: function() {
-			if (this != null) {
-				return this['@Name'];
-			}
-		},
-		value_item: function() {
-			if (this != null) {
-				return this['@Value'];
-			}
-		},
-		formula_item: function() {
-			if (this != null) {
-				return this['@Formula'];
-			}
-		},
 		pred: function() {
 			return this.Voxeme.Lex.Pred;
 		},
@@ -49,47 +31,17 @@ if (Meteor.isClient) {
 		components_null: function() {
 			return (this.Voxeme.Type.Components == null);
 		},
-		components: function() {
-			return this.Voxeme.Type.Components.Component;
-		},
 		concavity: function() {
 			return this.Voxeme.Type.Concavity;
-		},
-		rotatsym_null: function() {
-			return (this.Voxeme.Type.RotatSym == null);
-		},
-		rotatsym_first: function() {
-			return (this.Voxeme.Type.RotatSym.split(',')[0]);
-		},
-		rotatsym: function() {
-			return (this.Voxeme.Type.RotatSym.split(',').slice(1));
-		},
-		reflsym_null: function() {
-			return (this.Voxeme.Type.ReflSym == null);
-		},
-		reflsym_first: function() {
-			return (this.Voxeme.Type.ReflSym.split(',')[0]);
-		},
-		reflsym: function() {
-			return (this.Voxeme.Type.ReflSym.split(',').slice(1));
 		},
 		intrinsic_null: function() {
 			return (this.Voxeme.Habitat.Intrinsic == null);
 		},
-		intrinsic: function() {
-			return this.Voxeme.Habitat.Intrinsic.Intr;
-		},
 		extrinsic_null: function() {
 			return (this.Voxeme.Habitat.Extrinsic == null);
 		},
-		extrinsic: function() {
-			return this.Voxeme.Habitat.Extrinsic.Extr;
-		},
 		affordances_null: function() {
 			return (this.Voxeme.Afford_Str.Affordances == null);
-		},
-		affordances: function() {
-			return this.Voxeme.Afford_Str.Affordances.Affordance;
 		},
 		scale: function() {
 			return this.Voxeme.Embodiment.Scale;
@@ -99,7 +51,38 @@ if (Meteor.isClient) {
 		}
 	});
 	
+	Template.listItems.helpers({
+		item: function() {
+			if (this != null) {
+				if (this['@Value'] != null) {
+					return this['@Value'];
+				}
+				else {
+					return this['@Formula'];
+				}
+			}
+		},
+	});
 	
+	Template.commaSeparated.helpers({
+		splitList:function() {
+			if (this.list != null) {
+				return this.list.split(',');
+			}
+			else {
+				return ['none'];
+			}
+		},
+		lenZero: function() {
+			return (this[0] == 'none');
+		},
+		comma: function() {
+			return this.splice(0,this.length-1);
+		},
+		last: function() {
+			return this[this.length-1];
+		}
+	});
 	
 	
 	
