@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-
+	
 	Template.browser.helpers({
 		objectListData: function() {
 			return Voxemes.find();
@@ -10,7 +10,7 @@ if (Meteor.isClient) {
 		obj: function() {
 			return Session.get("obj");
 		},
-		test:function() {
+		test:function() {			
 			Session.setDefault("obj",Voxemes.find().fetch()[0]);
 			Session.setDefault("event",Events.find().fetch()[0]);
 			
@@ -87,17 +87,13 @@ if (Meteor.isClient) {
 	
 	
 	Template.browser.events({
-		'click .voxemeSelect':function (event) {
-			event.preventDefault();
-			var voxName = this.Voxeme.Lex.Pred;
-			Session.set("obj",this);
-			
-			$('.objList li a').removeClass('selectedObj');
-			$('.objList li a:contains("'+voxName+'")').addClass('selectedObj');
+		'change #objectSelect':function (event) {
+			var chosen = event.target.value;
+			Session.set("obj",Voxemes.findOne({'name':chosen}));
 		},
-		'click .eButton':function(event) {
-			event.preventDefault();
-			Session.set("event",this);
+		'change #eventSelect':function(event) {
+			var chosen = event.target.value;
+			Session.set("event",Events.findOne({'event':chosen}));
 		},
 		'click .expand':function(event) {
 			event.preventDefault();
@@ -106,7 +102,7 @@ if (Meteor.isClient) {
 		}
 	});
 	
-	Template.browser.onRendered(function () {
+	Template.browser.onRendered(function () {	
 		$('.objList').height(rwindow.innerHeight());
 			
 		$('.xml').height(rwindow.innerHeight()*.7);

@@ -11,14 +11,14 @@ path = 'voxml/'
 listing = os.listdir(path)
 with open('server/lib/voxemes-json.js','w') as f1:
 	f1.write('voxjson = [')
-	with open('server/lib/voxemes-xml.js','w') as f2:
-		f2.write('voxxml = [')
-		for file in listing:
-			xml = open(path+file,'r').read()
 
-			f1.write(json.dumps(xmltodict.parse(xml))+',')
-			
-			f2.write(str({'voxeme':file[:-4],'xml':xml})+',')
-			
-		f2.write(']')
-		f1.write(']')
+	for file in listing:
+		xml = open(path+file,'r').read()
+		j = json.dumps(xmltodict.parse(xml))
+		j = j[0:-1]
+		j += ",'name':'"+file[:-4]+"'}"
+		print(j)
+		
+		f1.write(j+',')
+
+	f1.write(']')

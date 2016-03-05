@@ -38,6 +38,11 @@
 	<option class="voxemeSelect" value="{{Voxeme.Lex.Pred}}">{{Voxeme.Lex.Pred}}</option>
 </template>
 
+<template name="eventButton">
+	<option class="eButton" value="{{event}}">{{event}}</option>
+</template>
+
+
 <template name="objectXML">
 	<h4>{{pred}}</h4>
 	<ul id="prettyPrintList">
@@ -108,10 +113,6 @@
 	</ul>
 </template>
 
-
-<template name="eventButton">
-	<option class="eButton" value="{{event}}">{{event}}</option>
-</template>
 
 <template name="listItems">
 	{{#each list}}
