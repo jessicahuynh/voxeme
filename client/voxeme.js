@@ -64,10 +64,10 @@ if (Meteor.isClient) {
 		},
 	});
 	
-	Template.commaSeparated.helpers({
+	Template.separated.helpers({
 		splitList:function() {
 			if (this.list != null) {
-				return this.list.split(',');
+				return this.list.split(this.sep);
 			}
 			else {
 				return ['none'];
@@ -103,13 +103,6 @@ if (Meteor.isClient) {
 	});
 	
 	Template.browser.onRendered(function () {	
-		$('.objList').height(rwindow.innerHeight());
-			
-		$('.xml').height(rwindow.innerHeight()*.7);
-		
-		$('.events').height(rwindow.innerHeight()*.3);
-		
-		
 		$(".expand").each(function() {
     		var link = $(this);
     		link.html('+ '+link.html());
@@ -118,20 +111,5 @@ if (Meteor.isClient) {
 		$(".hidden").hide();
 	});
 	
-	
-	Template.browser.onCreated(function() {
-		$(window).resize(function() {
-			$('.objList').height(rwindow.innerHeight());
-			
-			$('.xml').height(rwindow.innerHeight()*.7);
-			
-			$('.events').height(rwindow.innerHeight()*.3);
-		});
-	});
-	
-	Template.browser.onDestroyed(function() {
-		$(window).off('resize');
-	});
-
 
 }

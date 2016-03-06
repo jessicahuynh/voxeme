@@ -9,13 +9,6 @@
 					{{/each}}
 				</select>
 			</div>
-		</div>
-		<div class="four columns">
-			<div class="xml">
-				{{#with obj}}
-					{{> objectXML}}
-				{{/with}}
-			</div>
 			
 			<div class="events">
 				<label for="eventSelect">Events</label>
@@ -24,6 +17,13 @@
 						{{> eventButton}}
 					{{/each}}
 				</select>
+			</div>
+		</div>
+		<div class="four columns">
+			<div class="xml">
+				{{#with obj}}
+					{{> objectXML}}
+				{{/with}}
 			</div>
 		</div>
 		<div class="six columns">
@@ -49,7 +49,7 @@
 		<li><a class="expand">Lex</a>
 			<ul class="hidden">
 				<li>Pred: <a href="#">{{pred}}</a></li>
-				<li>Type: <a href="#">{{type}}</a></li>
+				<li>Type: {{> separated list=this.Voxeme.Lex.Type sep='*'}}</li>
 			</ul>
 		</li>
 		<li><a class="expand">Type</a>
@@ -65,8 +65,8 @@
 					</ul>
 				</li>
 				<li>Concavity: <a href="#">{{concavity}}</a></li>
-				<li>RotatSym: {{> commaSeparated list=this.Voxeme.Type.RotatSym}}</li>
-				<li>ReflSym: {{> commaSeparated list=this.Voxeme.Type.ReflSym}}</li>
+				<li>RotatSym: {{> separated list=this.Voxeme.Type.RotatSym sep=','}}</li>
+				<li>ReflSym: {{> separated list=this.Voxeme.Type.ReflSym sep=','}}</li>
 			</ul>
 		</li>
 		<li><a class="expand">Habitat</a>
@@ -76,7 +76,7 @@
 					{{#if intrinsic_null}}
 						<li>None</li>
 					{{else}}
-						{{> trinsic list=this.Voxeme.Habitat.Intrinsic.Intr tr='Intr'}}
+						{{> trinsic list=this.Voxeme.Habitat.Intrinsic.Intr}}
 					{{/if}}
 					</ul>
 				</li>
@@ -85,7 +85,7 @@
 					{{#if extrinsic_null}}
 							<li>None</li>
 					{{else}}
-						{{> trinsic list=this.Voxeme.Habitat.Extrinsic.Extr tr='Extr'}}
+						{{> trinsic list=this.Voxeme.Habitat.Extrinsic.Extr}}
 					{{/if}}
 					</ul>
 				</li>
@@ -122,16 +122,11 @@
 
 <template name="trinsic">
 	{{#each list}}
-		<li><a class="expand">{{../tr}}</a>
-			<ul class="hidden">
-				<li>Name: <a href="#">{{@Name}}</a></li>
-				<li>Value: <a href="#">{{@Value}}</a></li>
-			</ul>
-		</li>
+		<li><a href="#">{{@Name}} = {{@Value}}</a></li>
 	{{/each}}
 </template>
 
-<template name="commaSeparated">
+<template name="separated">
 	{{#with splitList}}
 		{{#if lenZero}}
 			None
