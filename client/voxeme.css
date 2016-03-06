@@ -23,9 +23,6 @@ html, body {
     max-width:1440px;
 }
 
-.objectListContainer {
-	min-height:10em;
-}
 
 /* basic styles */
 a {
@@ -57,7 +54,7 @@ button:hover, button:active, .selectedObj {
 .xml {
 	overflow-y:scroll;
 	overflow-x:hidden;
-	min-height:1em;
+	min-height:10em;
 	height:100%;
 	margin:0;
 	padding:.25em;

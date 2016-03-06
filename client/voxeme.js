@@ -88,10 +88,14 @@ if (Meteor.isClient) {
 	
 	Template.browser.events({
 		'change #objectSelect':function (event) {
+			event.preventDefault();
+			
 			var chosen = event.target.value;
 			Session.set("obj",Voxemes.findOne({'name':chosen}));
 		},
 		'change #eventSelect':function(event) {
+			event.preventDefault();
+			
 			var chosen = event.target.value;
 			Session.set("event",Events.findOne({'event':chosen}));
 		},
@@ -99,17 +103,39 @@ if (Meteor.isClient) {
 			event.preventDefault();
 			
 			$(event.currentTarget).next('.hidden').slideToggle(400);
+			
+			var toggle = $(event.currentTarget).children('.toggle');
+			if (toggle.html() == '+') {
+				toggle.html('-');
+			}
+			else {
+				toggle.html('+');
+			}
 		}
 	});
 	
 	Template.browser.onRendered(function () {	
+		$('.xml').height(rwindow.innerHeight());
+		
 		$(".expand").each(function() {
     		var link = $(this);
-    		link.html('+ '+link.html());
+    		link.html('<span class="toggle">+</span>&nbsp;'+link.html());
 		});
 		
 		$(".hidden").hide();
 	});
 	
+	
+	Template.browser.onCreated(function() {
+		$(window).resize(function() {
+			$('.xml').height(rwindow.innerHeight());
+		});
+	});
+	
+	Template.browser.onDestroyed(function() {
+		$(window).off('resize');
+	});
+
+
 
 }
