@@ -18,6 +18,34 @@
 					{{/each}}
 				</select>
 			</div>
+			
+			<div class="relations">
+				<label for="relationSelect">Relations</label>
+				<select class="u-full-width" id="relationSelect">
+					{{#each relations}}
+						{{> relationButton}}
+					{{/each}}
+				</select>
+			</div>
+			
+			<div class="attributes">
+				<label for="attributeSelect">Attributes</label>
+				<select class="u-full-width" id="attributeSelect">
+					{{#each attributes}}
+						{{> attributeButton}}
+					{{/each}}
+				</select>
+			</div>
+			
+			<div class="functions">
+				<label for="functionSelect">Functions</label>
+				<select class="u-full-width" id="functionSelect">
+					{{#each functions}}
+						{{> functionButton}}
+					{{/each}}
+				</select>
+			</div>
+			
 		</div>
 		<div class="four columns">
 			<div class="xml">
@@ -42,6 +70,18 @@
 	<option class="eButton" value="{{event}}">{{event}}</option>
 </template>
 
+<template name="relationButton">
+	<option class="rButton" value="{{relation}}">{{relation}}</option>
+</template>
+
+<template name="attributeButton">
+	<option class="aButton" value="{{attribute}}">{{attribute}}</option>
+</template>
+
+<template name="functionButton">
+	<option class="fButton" value="{{function}}">{{function}}</option>
+</template>
+
 
 <template name="objectXML">
 	<h4>{{name}}</h4>
@@ -49,7 +89,7 @@
 		<li><a class="expand">Lex</a>
 			<ul class="hidden">
 				<li>Pred: <a href="#">{{pred}}</a></li>
-				<li>Type: {{> separated list=this.Voxeme.Lex.Type sep='*'}}</li>
+				<li>Type: {{> separated list=this.VoxML.Lex.Type sep='*'}}</li>
 			</ul>
 		</li>
 		<li><a class="expand">Type</a>
@@ -60,13 +100,13 @@
 					{{#if components_null}}
 						<li>None</li>
 					{{else}}
-						{{> listItems list=this.Voxeme.Type.Components.Component}}
+						{{> listItems list=this.VoxML.Type.Components.Component}}
 					{{/if}}
 					</ul>
 				</li>
 				<li>Concavity: <a href="#">{{concavity}}</a></li>
-				<li>RotatSym: {{> separated list=this.Voxeme.Type.RotatSym sep=','}}</li>
-				<li>ReflSym: {{> separated list=this.Voxeme.Type.ReflSym sep=','}}</li>
+				<li>RotatSym: {{> separated list=this.VoxML.Type.RotatSym sep=','}}</li>
+				<li>ReflSym: {{> separated list=this.VoxML.Type.ReflSym sep=','}}</li>
 			</ul>
 		</li>
 		<li><a class="expand">Habitat</a>
@@ -76,7 +116,7 @@
 					{{#if intrinsic_null}}
 						<li>None</li>
 					{{else}}
-						{{> trinsic list=this.Voxeme.Habitat.Intrinsic.Intr}}
+						{{> trinsic list=this.VoxML.Habitat.Intrinsic.Intr}}
 					{{/if}}
 					</ul>
 				</li>
@@ -85,7 +125,7 @@
 					{{#if extrinsic_null}}
 							<li>None</li>
 					{{else}}
-						{{> trinsic list=this.Voxeme.Habitat.Extrinsic.Extr}}
+						{{> trinsic list=this.VoxML.Habitat.Extrinsic.Extr}}
 					{{/if}}
 					</ul>
 				</li>
@@ -98,7 +138,7 @@
 						{{#if affordances_null}}
 							<li>None</li>
 						{{else}}
-							{{> listItems list=this.Voxeme.Afford_Str.Affordances.Affordance}}
+							{{> listItems list=this.VoxML.Afford_Str.Affordances.Affordance}}
 						{{/if}}
 					</ul>
 				</li>

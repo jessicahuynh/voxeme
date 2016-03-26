@@ -7,47 +7,59 @@ if (Meteor.isClient) {
 		events: function() {
 			return Events.find();
 		},
+		relations: function() {
+			return Relations.find();
+		},
+		attributes: function() {
+			return Attributes.find();
+		},
+		functions: function() {
+			return Functions.find();
+		},
 		obj: function() {
 			return Session.get("obj");
 		},
 		test:function() {			
 			Session.setDefault("obj",Voxemes.find().fetch()[0]);
 			Session.setDefault("event",Events.find().fetch()[0]);
+			Session.setDefault("relation",Relations.find().fetch()[0]);
+			Session.setDefault("attribute",Attributes.find().fetch()[0]);
+			Session.setDefault("function",Functions.find().fetch()[0]);
 			
-			return Session.get("event").event + ": " + Session.get("obj").Voxeme.Lex.Pred;
+			return Session.get("event").event + ": " + Session.get("obj").VoxML.Lex.Pred + ": " + Session.get("relation").relation+ ": " + Session.get("attribute").attribute + ": " + Session.get("function").function;
 		}
 	});
 	
 	Template.objectXML.helpers({
 		pred: function() {
-			return this.Voxeme.Lex.Pred;
+			return this.VoxML.Lex.Pred;
 		},
 		type: function() {
-			return this.Voxeme.Lex.Type;
+			return this.VoxML.Lex.Type;
 		},
 		head: function() {
-			return this.Voxeme.Type.Head;
+			return this.VoxML.Type.Head;
 		},
 		components_null: function() {
-			return (this.Voxeme.Type.Components == null);
+			return (this.VoxML.Type.Components == null);
 		},
 		concavity: function() {
-			return this.Voxeme.Type.Concavity;
+			return this.VoxML.Type.Concavity;
 		},
 		intrinsic_null: function() {
-			return (this.Voxeme.Habitat.Intrinsic == null);
+			return (this.VoxML.Habitat.Intrinsic == null);
 		},
 		extrinsic_null: function() {
-			return (this.Voxeme.Habitat.Extrinsic == null);
+			return (this.VoxML.Habitat.Extrinsic == null);
 		},
 		affordances_null: function() {
-			return (this.Voxeme.Afford_Str.Affordances == null);
+			return (this.VoxML.Afford_Str.Affordances == null);
 		},
 		scale: function() {
-			return this.Voxeme.Embodiment.Scale;
+			return this.VoxML.Embodiment.Scale;
 		},
 		movable: function() {
-			return this.Voxeme.Embodiment.Movable;
+			return this.VoxML.Embodiment.Movable;
 		}
 	});
 	
@@ -98,6 +110,24 @@ if (Meteor.isClient) {
 			
 			var chosen = event.target.value;
 			Session.set("event",Events.findOne({'event':chosen}));
+		},
+		'change #relationSelect':function(event) {
+			event.preventDefault();
+			
+			var chosen = event.target.value;
+			Session.set("relation",Relations.findOne({'relation':chosen}));
+		},
+		'change #attributeSelect':function(event) {
+			event.preventDefault();
+			
+			var chosen = event.target.value;
+			Session.set("attribute",Attributes.findOne({'attribute':chosen}));
+		},
+		'change #functionSelect':function(event) {
+			event.preventDefault();
+			
+			var chosen = event.target.value;
+			Session.set("function",Functions.findOne({'function':chosen}));
 		},
 		'click .expand':function(event) {
 			event.preventDefault();

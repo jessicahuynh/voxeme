@@ -10,4 +10,22 @@ Meteor.startup(function() {
 			Events.insert(event);
 		});
 	}
+	
+	if (Relations.find().count() == 0) {
+		relations.forEach(function(relation) {
+			Relations.insert(relation);
+		});
+	}
+	
+	if (Attributes.find().count() == 0) {
+		attributes.forEach(function(attribute) {
+			Attributes.insert(attribute);
+		});
+	}
+	
+	if (Functions.find().count() == 0) {
+		functions.forEach(function(f) {
+			Functions.insert(f);
+		});
+	}
 });

@@ -12,13 +12,5 @@ events = [
 	{'event':'pivoted object rotation (flip on edge)'},
 	{'event':'flip at center'},
 	{'event':'close'},
-	{'event':'open'},
-	{'event':'touching'},
-	{'event':'in'},
-	{'event':'on'},
-	{'event':'behind'},
-	{'event':'in front of'},
-	{'event':'near'},
-	{'event':'left of'},
-	{'event':'right of'}
+	{'event':'open'}
 ]
