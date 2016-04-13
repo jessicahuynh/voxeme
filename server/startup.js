@@ -28,4 +28,13 @@ Meteor.startup(function() {
 			Functions.insert(f);
 		});
 	}
+	
+	Transfer.remove({});
+	Transfer.insert({cmd:'dispObj', val:''});
+	Transfer.insert({cmd:'showAxisX', val:false});
+	Transfer.insert({cmd:'showAxisY', val:false});
+	Transfer.insert({cmd:'showAxisZ', val:false});
+	Transfer.insert({cmd:'showPlaneXY', val:false});
+	Transfer.insert({cmd:'showPlaneXZ', val:false});
+	Transfer.insert({cmd:'showPlaneYZ', val:false});
 });

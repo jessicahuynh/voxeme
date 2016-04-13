@@ -54,33 +54,30 @@ button:hover, button:active, .selectedObj {
 .xml {
 	overflow-y:scroll;
 	overflow-x:hidden;
-	min-height:10em;
-	height:100%;
 	margin:0;
 	padding:.25em;
 	background:#f1f1f1;
 	display:block;
 }
-
-#prettyPrintList, #prettyPrintList li ul, #prettyPrintList li ul il ul {
+.prettyPrintList, .prettyPrintList li ul, .prettyPrintList li ul il ul {
 	list-style-type: none;
 	margin-top:0;
 	margin-bottom:.5em;
 }
 
-#prettyPrintList li, #prettyPrintList li ul li {
+.prettyPrintList li, .prettyPrintList li ul li {
 	margin:0;
 }
 
-#prettyPrintList a {
+.prettyPrintList a {
 	padding:.25em 0;
 }
 
-#prettyPrintList a.expand {
+.prettyPrintList a.expand {
 	display:block;
 }
 
-#prettyPrintList a.expand:hover {
+.prettyPrintList a.expand:hover {
 	background-color:#003e8c;
 	color:#f1f1f1;
 }

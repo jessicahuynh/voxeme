@@ -19,6 +19,9 @@ if (Meteor.isClient) {
 		obj: function() {
 			return Session.get("obj");
 		},
+		ev: function() {
+			return Session.get("event");
+		},
 		test:function() {			
 			Session.setDefault("obj",Voxemes.find().fetch()[0]);
 			Session.setDefault("event",Events.find().fetch()[0]);
@@ -63,6 +66,24 @@ if (Meteor.isClient) {
 		}
 	});
 	
+	Template.eventXML.helpers({
+		pred: function() {
+			return this.VoxML.Lex.Pred;
+		},
+		type: function() {
+			return this.VoxML.Lex.Type;
+		},
+		head: function() {
+			return this.VoxML.Type.Head;
+		},
+		args_null: function() {
+			return (this.VoxML.Type.Args == null);
+		},
+		body_null: function() {
+			return (this.VoxML.Type.Body == null);
+		}
+	});
+	
 	Template.listItems.helpers({
 		item: function() {
 			if (this != null) {
@@ -93,10 +114,45 @@ if (Meteor.isClient) {
 		},
 		last: function() {
 			return this[this.length-1];
+		},
+		equals: function(t1,t2) {
+			return (t1 == t2);
 		}
 	});
 	
-	
+	Template.separated.events({
+		'click a': function(event) {
+			if (event.target.text == 'X') {
+				var val = Transfer.findOne({cmd:'showAxisX'}).val;
+				Meteor.call("setTransferVariable","showAxisX",!val);
+			}
+			else
+			if (event.target.text == 'Y') {
+				var val = Transfer.findOne({cmd:'showAxisY'}).val;
+				Meteor.call("setTransferVariable","showAxisY",!val);
+			}
+			else
+			if (event.target.text == 'Z') {
+				var val = Transfer.findOne({cmd:'showAxisZ'}).val;
+				Meteor.call("setTransferVariable","showAxisZ",!val);
+			}
+			else
+			if (event.target.text == 'XY') {
+				var val = Transfer.findOne({cmd:'showPlaneXY'}).val;
+				Meteor.call("setTransferVariable","showPlaneXY",!val);
+			}
+			else
+			if (event.target.text == 'XZ') {
+				var val = Transfer.findOne({cmd:'showPlaneXZ'}).val;
+				Meteor.call("setTransferVariable","showPlaneXZ",!val);
+			}
+			else
+			if (event.target.text == 'YZ') {
+				var val = Transfer.findOne({cmd:'showPlaneYZ'}).val;
+				Meteor.call("setTransferVariable","showPlaneYZ",!val);
+			}
+		}
+	});
 	
 	Template.browser.events({
 		'change #objectSelect':function (event) {
@@ -104,6 +160,15 @@ if (Meteor.isClient) {
 			
 			var chosen = event.target.value;
 			Session.set("obj",Voxemes.findOne({'name':chosen}));
+			
+			Meteor.call("setTransferVariable","showAxisX",false);
+			Meteor.call("setTransferVariable","showAxisY",false);
+			Meteor.call("setTransferVariable","showAxisZ",false);
+			Meteor.call("setTransferVariable","showPlaneXY",false);
+			Meteor.call("setTransferVariable","showPlaneXZ",false);
+			Meteor.call("setTransferVariable","showPlaneYZ",false);
+			
+			Meteor.call("setTransferVariable","dispObj",Session.get("obj").VoxML.Lex.Pred);
 		},
 		'change #eventSelect':function(event) {
 			event.preventDefault();
@@ -145,7 +210,8 @@ if (Meteor.isClient) {
 	});
 	
 	Template.browser.onRendered(function () {	
-		$('.xml').height(rwindow.innerHeight());
+		$('#objXML').height(rwindow.innerHeight()/2);
+		$('#eventXML').height(rwindow.innerHeight()/2);
 		
 		$(".expand").each(function() {
     		var link = $(this);
@@ -158,7 +224,8 @@ if (Meteor.isClient) {
 	
 	Template.browser.onCreated(function() {
 		$(window).resize(function() {
-			$('.xml').height(rwindow.innerHeight());
+			$('#objXML').height(rwindow.innerHeight()/2);
+			$('#eventXML').height(rwindow.innerHeight()/2);
 		});
 	});
 	

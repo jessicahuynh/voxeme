@@ -48,9 +48,14 @@
 			
 		</div>
 		<div class="four columns">
-			<div class="xml">
+			<div class="xml" id="objXML">
 				{{#with obj}}
 					{{> objectXML}}
+				{{/with}}
+			</div>
+			<div class="xml" id="eventXML">
+				{{#with ev}}
+					{{> eventXML}}
 				{{/with}}
 			</div>
 		</div>
@@ -85,7 +90,7 @@
 
 <template name="objectXML">
 	<h4>{{name}}</h4>
-	<ul id="prettyPrintList">
+	<ul class="prettyPrintList">
 		<li><a class="expand">Lex</a>
 			<ul class="hidden">
 				<li>Pred: <a href="#">{{pred}}</a></li>
@@ -153,6 +158,41 @@
 	</ul>
 </template>
 
+<template name="eventXML">
+	<h4>{{event}}</h4>
+	<ul class="prettyPrintList">
+		<li><a class="expand">Lex</a>
+			<ul class="hidden">
+				<li>Pred: <a href="#">{{pred}}</a></li>
+				<li>Type: {{> separated list=this.VoxML.Lex.Type sep='*'}}</li>
+			</ul>
+		</li>
+		<li><a class="expand">Type</a>
+			<ul class="hidden">
+				<li>Head: <a href="#">{{head}}</a></li>
+                <li><a class="expand">Args</a>
+					<ul class="hidden">
+					{{#if args_null}}
+						<li>None defined</li>
+					{{else}}
+						{{> listItemValues list=this.VoxML.Type.Args.Arg}}
+					{{/if}}
+					</ul>
+				</li>
+                <li><a class="expand">Body</a>
+					<ul class="hidden">
+					{{#if body_null}}
+						<li>None defined</li>
+					{{else}}
+						{{> listItemValues list=this.VoxML.Type.Body.Subevents}}
+					{{/if}}
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</template>
+
 
 <template name="listItems">
 	{{#each list}}
@@ -177,4 +217,10 @@
 			<a href='#'>{{last}}</a>
 		{{/if}}
 	{{/with}}
+</template>
+
+<template name="listItemValues">
+	{{#each list}}
+		<li>{{@Name}}: <a href="#">{{@Value}}</a></li>
+	{{/each}}
 </template>
