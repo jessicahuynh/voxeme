@@ -58,6 +58,11 @@
 					{{> eventXML}}
 				{{/with}}
 			</div>
+			<div class="xml" id="functionXML">
+				{{#with func}}
+					{{> functionXML}}
+				{{/with}}
+			</div>
 		</div>
 		<div class="six columns">
 			<div class="unity">
@@ -193,6 +198,36 @@
 	</ul>
 </template>
 
+<template name="functionXML">
+	<h4>{{function}}</h4>
+	<ul class="prettyPrintList">
+		<li><a class="expand">Lex</a>
+			<ul class="hidden">
+				<li>Pred: <a href="#">{{pred}}</a></li>
+			</ul>
+		</li>
+		<li><a class="expand">Type</a>
+			<ul class="hidden">
+				<li>Arg: <a href="#">{{arg}}</a></li>
+				<li>Referent: {{> arrow_list list=this.VoxML.Type.Referent}}</li>
+				<li>Mapping: <a href="#">{{map_dimension}}:{{n}}</a></li>
+				<li><a class="expand">Orientation</a>
+					<ul class="hidden">
+						<li>Space: <a href="#">{{space}}</a></li>
+						<li>Axis: <a href="#">{{axis}}</a></li>
+						<li><a class="expand">Arity</a>
+							<ul class="hidden">
+								<li>{{arity_description}}</li>
+								<li>{{> arrow_list list=this.VoxML.Type.Orientation.Arity}}</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</template>
+
 
 <template name="listItems">
 	{{#each list}}
@@ -212,7 +247,7 @@
 			None
 		{{else}}
 			{{#each comma}}
-				<a href="#">{{this}}</a>,
+				<a href="#">{{this}}</a>, 
 			{{/each}}
 			<a href='#'>{{last}}</a>
 		{{/if}}
@@ -223,4 +258,18 @@
 	{{#each list}}
 		<li>{{@Name}}: <a href="#">{{@Value}}</a></li>
 	{{/each}}
+</template>
+
+<template name="arrow_list">
+	{{#with R1exists}}
+		{{@Value}}
+	{{/with}}
+	{{#if R2exists}}
+		&rarr;
+		{{this.list.R2.@Value}}
+	{{/if}}
+	{{#if R3exists}}
+		&rarr;
+		{{this.list.R3.@Value}}
+	{{/if}}
 </template>

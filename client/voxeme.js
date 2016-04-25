@@ -22,6 +22,9 @@ if (Meteor.isClient) {
 		ev: function() {
 			return Session.get("event");
 		},
+		func: function() {
+			return Session.get("function");
+		},
 		test:function() {			
 			Session.setDefault("obj",Voxemes.find().fetch()[0]);
 			Session.setDefault("event",Events.find().fetch()[0]);
@@ -70,9 +73,6 @@ if (Meteor.isClient) {
 		pred: function() {
 			return this.VoxML.Lex.Pred;
 		},
-		type: function() {
-			return this.VoxML.Lex.Type;
-		},
 		head: function() {
 			return this.VoxML.Type.Head;
 		},
@@ -81,6 +81,33 @@ if (Meteor.isClient) {
 		},
 		body_null: function() {
 			return (this.VoxML.Type.Body == null);
+		}
+	});
+	
+	Template.functionXML.helpers({
+		pred: function() {
+			return this.VoxML.Lex.Pred;
+		},
+		arg: function() {
+			return this.VoxML.Type.Arg;
+		},
+		map_dimension: function() {
+			var m = this.VoxML.Type.Mapping;
+			return m['@Name'];
+		},
+		n: function() {
+			var m = this.VoxML.Type.Mapping;
+			return m['@Value'];
+		},
+		space: function() {
+			return this.VoxML.Type.Orientation.Space;
+		},
+		axis: function() {
+			return this.VoxML.Type.Orientation.Axis;
+		},
+		arity_description: function() {
+			var a = this.VoxML.Type.Orientation.Arity;
+			return a['@Type'];
 		}
 	});
 	
@@ -117,6 +144,33 @@ if (Meteor.isClient) {
 		},
 		equals: function(t1,t2) {
 			return (t1 == t2);
+		},
+	});
+	
+	Template.arrow_list.helpers({
+		R1exists:function() {
+			if (this.list.R1 != null) {
+				return this.list.R1;
+			}
+			else {
+				return 'none';
+			}
+		},
+		R2exists:function() {
+			if (this.list.R2 != null) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		},
+		R3exists:function() {
+			if (this.list.R3 != null) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	});
 	
@@ -210,8 +264,7 @@ if (Meteor.isClient) {
 	});
 	
 	Template.browser.onRendered(function () {	
-		$('#objXML').height(rwindow.innerHeight()/2);
-		$('#eventXML').height(rwindow.innerHeight()/2);
+		$('.xml').height((rwindow.innerHeight()-25)/3);
 		
 		$(".expand").each(function() {
     		var link = $(this);
@@ -224,8 +277,7 @@ if (Meteor.isClient) {
 	
 	Template.browser.onCreated(function() {
 		$(window).resize(function() {
-			$('#objXML').height(rwindow.innerHeight()/2);
-			$('#eventXML').height(rwindow.innerHeight()/2);
+			$('.xml').height((rwindow.innerHeight()-25)/3);
 		});
 	});
 	

@@ -14,9 +14,9 @@
 			<Space>world</Space>
 			<Axis>+Y</Axis>
 			<Arity Type="intransitive">
-				<A1 Value="x" />
-				<A2 Value="Habitat" />
-				<A3 Value="Intr[top(axis)]" />
+				<R1 Value="x" />
+				<R2 Value="Habitat" />
+				<R3 Value="Intr[top(axis)]" />
 			</Arity>
 		</Orientation>
 	</Type>
