@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<VoxML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Lex>
+    <Pred>banana</Pred>
+    <Type>physobj</Type>
+  </Lex>
+  <Type>
+    <Head>cylindroid</Head>
+    <Components>
+      <Component Value="fruit" />
+      <Component Value="stem" />
+    </Components>
+    <Concavity>Convex</Concavity>
+    <RotatSym />
+    <ReflSym>XY</ReflSym>
+  </Type>
+  <Habitat>
+    <Intrinsic />
+    <Extrinsic />
+  </Habitat>
+  <Afford_Str>
+    <Affordances />
+  </Afford_Str>
+  <Embodiment>
+    <Scale>agent</Scale>
+    <Movable>true</Movable>
+  </Embodiment>
+</VoxML>

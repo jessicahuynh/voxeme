@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<VoxML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Lex>
+    <Pred>book</Pred>
+    <Type>physobj*artifact</Type>
+  </Lex>
+  <Type>
+    <Head>rectangular_prism</Head>
+    <Components>
+      <Component Value="cover" />
+      <Component Value="page+" />
+    </Components>
+    <Concavity>Flat</Concavity>
+    <RotatSym />
+    <ReflSym>XY</ReflSym>
+  </Type>
+  <Habitat>
+    <Intrinsic />
+    <Extrinsic />
+  </Habitat>
+  <Afford_Str>
+    <Affordances>
+      <Affordance Formula="" />
+    </Affordances>
+  </Afford_Str>
+  <Embodiment>
+    <Scale>agent</Scale>
+    <Movable>true</Movable>
+  </Embodiment>
+</VoxML>

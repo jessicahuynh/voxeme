@@ -7,9 +7,9 @@
 import os
 import xmltodict, json
 
-path = 'voxml/'
+path = 'voxml/objects/'
 listing = os.listdir(path)
-with open('server/lib/voxemes-json.js','w') as f1:
+with open('server/lib/objects.js','w') as f1:
 	f1.write('voxjson = [')
 
 	for file in listing:
