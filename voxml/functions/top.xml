@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<VoxML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Lex>
+		<Pred>top</Pred>
+	</Lex>
+	<Type>
+		<Arg>x:physobj</Arg>
+		<Referent>
+			<R1 Value="x" />
+			<R2 Value="Head" />
+		</Referent>
+		<Mapping Name="dimension(n)" Value="n-1"/>
+		<Orientation>
+			<Space>world</Space>
+			<Axis>+Y</Axis>
+			<Arity Type="intransitive">
+				<A1 Value="x" />
+				<A2 Value="Habitat" />
+				<A3 Value="Intr[top(axis)]" />
+			</Arity>
+		</Orientation>
+	</Type>
+</VoxML>

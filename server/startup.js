@@ -1,6 +1,6 @@
 Meteor.startup(function() {
 	if (Voxemes.find().count() == 0) {
-		voxjson.forEach(function(vox) {
+		objects.forEach(function(vox) {
 			Voxemes.insert(vox);
 		});
 	}

@@ -1,6 +1,1 @@
-functions = [
-	{'function':'top of'},
-	{'function':'bottom of'},
-	{'function':'left side of'},
-	{'function':'right side of'}
-]
+functions= [{"VoxML": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xmlns:xsd": "http://www.w3.org/2001/XMLSchema", "Lex": {"Pred": "top"}, "Type": {"Arg": "x:physobj", "Referent": {"R1": {"@Value": "x"}, "R2": {"@Value": "Head"}}, "Mapping": {"@Name": "dimension(n)", "@Value": "n-1"}, "Orientation": {"Space": "world", "Axis": "+Y", "Arity": {"@Type": "intransitive", "A1": {"@Value": "x"}, "A2": {"@Value": "Habitat"}, "A3": {"@Value": "Intr[top(axis)]"}}}}},'function':'top'},]
